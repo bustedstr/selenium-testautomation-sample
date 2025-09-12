@@ -3,17 +3,37 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+#trigger:
+#- main
+
+#pool:
+#  vmImage: ubuntu-latest
+
+#steps:
+#- script: echo Hello, world!
+#  displayName: 'Run a one-line script'
+
+#- script: |
+#    echo Add other tasks to build, test, and deploy your project.
+#    echo See https://aka.ms/yaml
+#  displayName: 'Run a multi-line script'
+
 trigger:
-- main
+  - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
+
+variables:
+  DOCKER_IMAGE_NAME: 'selenium-tests'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: DockerInstaller@0
+  inputs:
+    dockerVersion: 'latest'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    docker build -t seleniumtests .
+    docker run seleniumtests
+  displayName: 'Build and Run Docker Selenium Tests'
+
