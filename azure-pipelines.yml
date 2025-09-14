@@ -24,17 +24,14 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  DOCKER_IMAGE_NAME: 'selenium-tests'
-
 steps:
-- task: DockerInstaller@0
-  inputs:
-    dockerVersion: '17.09.0-ce'
-    releaseType: 'stable'
+- script: |
+    docker-compose up --build --abort-on-container-exit
+  displayName: 'Start Selenium Grid and Run Tests'
 
 - script: |
-    docker build -t seleniumtests .
-    docker run seleniumtests
-  displayName: 'Build and Run Docker Selenium Tests'
+    docker-compose down
+  displayName: 'Clean Up Containers'
+
+
 
