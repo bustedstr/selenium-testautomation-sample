@@ -26,7 +26,7 @@ pool:
 
 steps:
 - script: |
-    docker-compose up --build --abort-on-container-exit
+    docker compose up --build --abort-on-container-exit
   displayName: 'Start Selenium Grid and Run Tests'
 
 - script: |
