@@ -23,7 +23,7 @@ public class SecondAutomatedTest {
         options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
+        driver = new RemoteWebDriver(new URL("http://selenium-hub:4444/wd/hub"), options);
     }
 
     @Test
