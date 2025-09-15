@@ -30,7 +30,7 @@ steps:
   displayName: 'Start Selenium Grid and Run Tests'
 
 - script: |
-    docker-compose down
+    docker compose down
   displayName: 'Clean Up Containers'
 
 
